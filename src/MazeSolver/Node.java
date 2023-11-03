@@ -80,7 +80,7 @@ public class Node {
 
     // Compute the euclidian distance between two nodes
     public float getDistanceTo(Node other){
-        return (float)Math.sqrt(Math.pow(other.x - this.x, 2) + Math.pow(other.y - this.y, 2));
+        return (float)(Math.pow(other.x - this.x, 2) + Math.pow(other.y - this.y, 2));
     }
 
     @Override
