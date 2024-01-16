@@ -1,6 +1,8 @@
 # MazeSolver
 
 Maze application that generate and solve a maze.
+For generating the maze, Prim's and Wilson algorithm are implemented (more in the future).
+For solving the maze only Astar is implemented (more in the future).
 
 https://github.com/gabriel-combe/MazeSolver/assets/26323828/50359a29-e563-4e66-a5c2-4aa5e65cb1d6
 
