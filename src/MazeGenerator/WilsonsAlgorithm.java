@@ -28,6 +28,7 @@ public class WilsonsAlgorithm extends MazeGenerator {
         return this.randomWalkNodes;
     }
 
+    // Random walk to create the labyrinth's path
     private void randomWalk(){
         int randomIndex = this.rand.nextInt(this.directionList.length);
 
@@ -55,6 +56,7 @@ public class WilsonsAlgorithm extends MazeGenerator {
         this.randomWalkNodes.add(this.gridMaze[2*offsets[0]+lastNode.getX()][2*offsets[1]+lastNode.getY()]);
     }
 
+    // Erase a loop create when the random walk encounter itself
     private void eraseLoop(int indexNode){
         int randomWalkNodeLength = this.randomWalkNodes.size()-1;
         for(int index = randomWalkNodeLength; indexNode < index; index--)
@@ -74,11 +76,14 @@ public class WilsonsAlgorithm extends MazeGenerator {
     
     @Override
     public void nextMazeStep(){
+        // Check if the maze is completely generated
         if(this.mazeNodes.size() == this.totalMazeCell){
             this.mazeFinished = true;
             return;
         }
         
+        // If the random walk array is empty, pick a new random valid node
+        // and start the random walk again
         if(this.randomWalkNodes.isEmpty()){
             int randomIndex = this.rand.nextInt(this.validNode.size());
 
@@ -94,11 +99,13 @@ public class WilsonsAlgorithm extends MazeGenerator {
         Node lastNode = this.randomWalkNodes.get(this.randomWalkNodes.size()-1);
         int indexLastNode = this.randomWalkNodes.indexOf(lastNode);
         
+        // Erase a loop if we encounter a node that is part of the path
         if(indexLastNode != this.randomWalkNodes.size()-1){
             this.eraseLoop(indexLastNode);
             return;
         }
         
+        // If we encounter a Node that belong to the maze, we add the entire path to the maze
         if(this.mazeNodes.contains(lastNode)){
             for (Node node : this.randomWalkNodes) {
                 this.gridMaze[node.getX()][node.getY()].setWalkable(true);
@@ -117,7 +124,11 @@ public class WilsonsAlgorithm extends MazeGenerator {
     public void generateMaze(){
         this.setupMaze();
 
+        // Loop until the maze is completely generated
         while(this.mazeNodes.size() != this.totalMazeCell){
+
+            // If the random walk array is empty, pick a new random valid node
+            // and start the random walk again
             if(this.randomWalkNodes.isEmpty()){
                 int randomIndex = this.rand.nextInt(this.validNode.size());
     
@@ -132,12 +143,14 @@ public class WilsonsAlgorithm extends MazeGenerator {
     
             Node lastNode = this.randomWalkNodes.get(this.randomWalkNodes.size()-1);
             int indexLastNode = this.randomWalkNodes.indexOf(lastNode);
-    
+            
+            // Erase a loop if we encounter a node that is part of the path
             if(indexLastNode != this.randomWalkNodes.size()-1){
                 this.eraseLoop(indexLastNode);
                 return;
             }
-    
+            
+            // If we encounter a Node that belong to the maze, we add the entire path to the maze
             if(this.mazeNodes.contains(lastNode)){
                 for (Node node : this.randomWalkNodes) {
                     this.gridMaze[node.getX()][node.getY()].setWalkable(true);

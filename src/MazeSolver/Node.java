@@ -1,9 +1,5 @@
 package MazeSolver;
 
-/**
- *
- * @author x9x71
- */
 public class Node {
     
     // PRIVATE

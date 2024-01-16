@@ -6,10 +6,6 @@ import java.util.*;
 import MazeDisplay.Grid;
 import MazeSolver.Node;
 
-/**
- *
- * @author x9x71
- */
 public abstract class MazeGenerator {
     protected Grid grid;
     protected Random rand = new Random();

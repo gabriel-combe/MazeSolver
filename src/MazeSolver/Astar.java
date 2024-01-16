@@ -5,10 +5,6 @@ import java.util.*;
 
 import MazeDisplay.Grid;
 
-/**
- *
- * @author x9x71
- */
 public class Astar {
 
     // PRIVATE

@@ -1,4 +1,6 @@
 package MazeDisplay;
+
+// Imports
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.*;
@@ -71,11 +73,13 @@ public class Grid
             setCellColour(node.x, node.y, 0.0F, 1.0F, 0.0F);
     }
 
+    // Display the path until a specific index
     public void displayPathUntil(ArrayList<Node> path, int index){
         for(int i = 0; i < index; i++)
             setCellColour(path.get(i).x, path.get(i).y, 0.0F, 1.0F, 0.0F);
     }
     
+    // Display the progress of the Aster algorithm
     public void displayAstarProgress(AbstractSet<Node> openSet, AbstractSet<Node> closeSet){
         for(int i = 0; i < width; i++) {
             for(int j = 0; j < height; j++) {
@@ -88,6 +92,7 @@ public class Grid
         }
     }
 
+    // Draw a frame of the maze
     public void drawFrame(){
         Graphics2D scaledImageGraphicsContext = scaledImage.createGraphics();
         scaledImageGraphicsContext.drawImage(image, 0, 0,(scale * width), (scale * height), null);
@@ -97,6 +102,7 @@ public class Grid
         imageFrame.repaint();
     }
     
+    // Set the colour of a cell/node
     private void setCellColour(int x, int y, float red, float green, float blue)
     {
         Color colour  = new Color(red, green, blue);
@@ -104,6 +110,7 @@ public class Grid
         raster.setDataElements(x, y, colourModel.getDataElements(colour.getRGB(), null));
     }
 
+    // Initialise cells with a probability of 0.5 of being part of the maze or of the walls
     public void initCells()
     {
         for(int i = 0; i < width; i++) {
@@ -117,6 +124,7 @@ public class Grid
         }
     }
 
+    // Initialise the entire maze as walls (used for maze generation)
     public void initCellsWall()
     {
         for(int i = 0; i < width; i++) {
@@ -126,6 +134,7 @@ public class Grid
         }
     }
     
+    // Initialise cells with a given probability of being part of the maze or of the walls
     public void initCells(double density)
     {
         for(int i = 0; i < width; i++) {
@@ -139,6 +148,7 @@ public class Grid
         }
     }
 
+    // Update the maze image using a HashSet
     public void updateMazeImage(HashSet<Node> maze){
         for(int i = 0; i < width; i++) {
             for(int j = 0; j < height; j++) {
@@ -150,6 +160,7 @@ public class Grid
         }
     }
 
+    // Update the maze image using an ArrayList
     public void updateMazeImage(ArrayList<Node> maze){
         for(int i = 0; i < width; i++) {
             for(int j = 0; j < height; j++) {
@@ -159,6 +170,7 @@ public class Grid
         }
     }
 
+    // Find the first free node of the maze
     public Node firstFreeNode(){
         for(int j = 0; j < height; j++) {
             for(int i = 0; i < width; i++) {
@@ -170,6 +182,7 @@ public class Grid
         return null;
     }
 
+    // Find the last free node of the maze
     public Node LastFreeNode(){
         for(int j = height-1; j >= 0 ; j--) {
             for(int i = width-1; i >= 0; i--) {
@@ -193,15 +206,6 @@ public class Grid
         
         return cells[indexX][indexY];
     }
-    
-    // private void copyGrid(Node[][] source, Node[][] destination)
-    // {
-    //     for(int i = 0; i < width; i++) {
-    //         for(int j = 0; j < height; j++) {
-    //             destination[i][j] = source[i][j];
-    //         }
-    //     }
-    // }
 
     public int getWidth() {
         return width;

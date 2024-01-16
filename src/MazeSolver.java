@@ -25,6 +25,7 @@ public class MazeSolver
         MazeGenerator mazegen = new WilsonsAlgorithm(grid);
         mazegen.setupMaze();
 
+        // Generate the maze
         while(!mazegen.mazeFinished){
             grid.updateGridImage();
             grid.updateMazeImage(mazegen.getMazeProgression());
@@ -47,12 +48,12 @@ public class MazeSolver
         
         // int status = solver.searchPath(start, end);
         solver.setupSearch(start, end);
-
         
+        // Solve the maze
         while(true)
         {
             grid.updateGridImage();
-           
+        
             if(solver.path.isEmpty() && !solver.searchFinished){
                 solver.nextStep();
                 grid.displayAstarProgress(solver.getOpenSet(), solver.getCloseSet());

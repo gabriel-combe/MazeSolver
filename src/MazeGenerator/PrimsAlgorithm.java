@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import MazeDisplay.Grid;
 import MazeSolver.Node;
 
-/**
- *
- * @author x9x71
- */
 public class PrimsAlgorithm extends MazeGenerator{
     private ArrayList<Node> neighbourWalls = new ArrayList<Node>();
     
@@ -22,6 +18,7 @@ public class PrimsAlgorithm extends MazeGenerator{
         return this.neighbourWalls;
     }
 
+    // Get the neighbour walls of a node
     private ArrayList<Node> getWalls(Node node){
         ArrayList<Node> neighbourWalls = new ArrayList<Node>();
 
@@ -44,6 +41,7 @@ public class PrimsAlgorithm extends MazeGenerator{
         return neighbourWalls;
     }
 
+    // Open a given wall (in the right direction)
     private void openWall(Node wall){
         
         if(wall.x%2 == 1){
